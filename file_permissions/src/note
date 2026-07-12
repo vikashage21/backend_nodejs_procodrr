@@ -1,0 +1,190 @@
+# Linux File Permissions - Revision Notes
+
+## 1. Listing Files
+
+```bash
+ls -l
+```
+
+Example output:
+
+```text
+drwxr-xr-x  2 user user 4096 Jul 12 10:00 src
+-rw-r--r--  1 user user  250 Jul 12 10:01 file.txt
+```
+
+### First Character
+
+| Symbol | Meaning            |
+| ------ | ------------------ |
+| `d`    | Directory (Folder) |
+| `-`    | Regular File       |
+| `l`    | Symbolic Link      |
+
+---
+
+## 2. Permission Format
+
+Example:
+
+```text
+-rw-r--r--
+```
+
+This is divided into four parts:
+
+```text
+- | rw- | r-- | r--
+  |  |     |     |
+Type User Group Other
+```
+
+* **User (Owner)** → Person who owns the file.
+* **Group** → Users in the same group.
+* **Other** → Everyone else.
+
+---
+
+## 3. Permission Meaning
+
+| Symbol | Permission    |
+| ------ | ------------- |
+| `r`    | Read          |
+| `w`    | Write         |
+| `x`    | Execute       |
+| `-`    | No Permission |
+
+Example:
+
+```text
+-rw-r--r--
+```
+
+* Owner → Read + Write
+* Group → Read Only
+* Others → Read Only
+
+**Note:** Everyone can read the file, but **only the owner can modify (write to) it.**
+
+---
+
+## 4. Numeric Permissions
+
+Each permission has a numeric value.
+
+| Permission    | Value |
+| ------------- | ----: |
+| Read (`r`)    |     4 |
+| Write (`w`)   |     2 |
+| Execute (`x`) |     1 |
+
+Examples:
+
+| Number | Permission          |
+| -----: | ------------------- |
+|      7 | rwx (4+2+1)         |
+|      6 | rw- (4+2)           |
+|      5 | r-x (4+1)           |
+|      4 | r--                 |
+|      3 | -wx                 |
+|      2 | -w-                 |
+|      1 | --x                 |
+|      0 | --- (No Permission) |
+
+---
+
+## 5. Using `chmod`
+
+### Symbolic Mode
+
+Give execute permission to everyone:
+
+```bash
+chmod ugo+x src/
+```
+
+Grant write permission to the owner only:
+
+```bash
+chmod u+w file.txt
+```
+
+Remove execute permission from others:
+
+```bash
+chmod o-x file.txt
+```
+
+Symbols:
+
+* `u` → User (Owner)
+* `g` → Group
+* `o` → Other
+* `a` → All (User + Group + Other)
+
+Operations:
+
+* `+` → Add Permission
+* `-` → Remove Permission
+* `=` → Set Exact Permission
+
+---
+
+### Numeric Mode
+
+Give full permissions to everyone:
+
+```bash
+chmod 777 src/
+```
+
+Examples:
+
+```bash
+chmod 755 script.sh
+chmod 644 file.txt
+chmod 600 secret.txt
+```
+
+Meaning:
+
+| Permission | Description                                                                        |
+| ---------- | ---------------------------------------------------------------------------------- |
+| `777`      | Everyone can read, write, and execute (generally not recommended).                 |
+| `755`      | Owner: rwx, Group: r-x, Others: r-x (common for directories and executable files). |
+| `644`      | Owner: rw-, Group: r--, Others: r-- (common for regular files).                    |
+| `600`      | Owner: rw-, Group: ---, Others: --- (private files).                               |
+
+---
+
+## 6. Git and File Permissions
+
+Git mainly tracks the **executable permission** of a file.
+
+For regular files, Git **does not track read/write permissions**. It only records whether a file is executable (`+x`) or not.
+
+Example:
+
+```bash
+chmod +x app.sh
+git status
+```
+
+Git will detect this permission change.
+
+---
+
+## Quick Revision
+
+* `ls -l` → Show detailed file permissions.
+* `d` → Directory.
+* `-` → Regular file.
+* Permission order → **User | Group | Other**
+* `r = 4`
+* `w = 2`
+* `x = 1`
+* `0` → No permission.
+* `chmod ugo+x file` → Give execute permission to everyone.
+* `chmod 755 file` → Owner: rwx, Group: r-x, Others: r-x.
+* `chmod 644 file` → Owner: rw-, Group: r--, Others: r--.
+* Git tracks the **execute bit** (`+x`) for regular files.

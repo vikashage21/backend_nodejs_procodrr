@@ -1,0 +1,36 @@
+// module system in nodejs
+
+// common js 
+
+// es module system 
+
+// module.exports  -  object
+
+// require is function
+
+// console.log(typeof require)
+// - function
+
+// it should be return something and take agruments
+
+// require take agruments as strings - path strings
+
+// in nodejs , every files are called as module
+
+// require function retrun value is module.exports 
+
+
+// ex -  module.exports ='string'
+
+// const sum = require('./sum')
+// console.log(sum) ==> strings
+
+// in require extension are optional 
+
+
+// return multiple 
+
+// module.exports = {
+//     sum , product
+// }
+

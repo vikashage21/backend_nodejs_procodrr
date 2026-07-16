@@ -1,0 +1,190 @@
+Executable Files in Linux & Node.js
+What is an Executable File?
+
+An executable file is a file that the operating system can run as a program.
+
+Note: A file does not become executable automatically. It must have the execute (x) permission.
+
+You can check permissions using:
+
+ls -l
+
+Example:
+
+-rwxr-xr-x  app.sh
+
+Here, x means the file is executable.
+
+To make a file executable:
+
+chmod +x filename
+
+Example:
+
+chmod +x app.sh
+Types of Executable Files
+
+There are mainly two types of executable files.
+
+1. Binary Executable Files
+
+A binary executable is a file that contains machine code (0s and 1s) directly understood by the CPU.
+
+Examples:
+
+.exe → Windows executable
+a.out → Linux default compiled executable
+Compiled C/C++ programs
+
+Example (Linux):
+
+./program
+
+Example (Windows):
+
+program.exe
+2. Script Executable Files
+
+A script executable contains human-readable code that is executed by an interpreter.
+
+Examples:
+
+.sh → Shell script (Linux)
+.py → Python script
+.js → JavaScript (Node.js)
+.bat → Batch script (Windows)
+
+Example:
+
+#!/bin/bash
+
+echo "Hello World"
+
+Make it executable:
+
+chmod +x hello.sh
+
+Run it:
+
+./hello.sh
+Executing Files in Linux
+
+There are different ways to run a program.
+
+Using Relative Path
+
+If the executable is in the current directory:
+
+./filename
+
+Example:
+
+./app
+
+or
+
+./hello.sh
+
+./ means current directory.
+
+Using Absolute Path
+
+An absolute path starts from the root (/).
+
+Example:
+
+/home/vikash/projects/app
+
+Run it:
+
+/home/vikash/projects/app
+Node.js Files
+
+Normally, JavaScript files are executed using the Node.js interpreter.
+
+Example:
+
+node app.js
+
+Here:
+
+node is the executable program.
+app.js is the JavaScript file.
+Making a Node.js File Directly Executable
+
+A Node.js file can also be executed directly by adding a shebang.
+
+#!/usr/bin/env node
+
+console.log("Hello Node");
+
+Make it executable:
+
+chmod +x app.js
+
+Run it:
+
+./app.js
+
+Without the shebang, you usually run it as:
+
+node app.js
+
+Important: A .js file does not become executable automatically. It runs through the Node.js interpreter (node). It can be executed directly only after adding a shebang and giving execute permission.
+
+Windows Executable Files
+.exe
+Binary executable file.
+Contains machine code.
+Runs directly on Windows.
+
+Example:
+
+calculator.exe
+.bat
+Batch script.
+Executed by the Windows Command Prompt (cmd.exe).
+
+Example:
+
+@echo off
+echo Hello World
+pause
+
+Run:
+
+hello.bat
+Linux Script Files
+.sh
+
+A shell script executed by Bash or another shell.
+
+Example:
+
+#!/bin/bash
+
+echo "Hello Linux"
+
+Run:
+
+bash hello.sh
+
+or after making it executable:
+
+chmod +x hello.sh
+./hello.sh
+Summary
+Type	Description	Example
+Binary Executable	Compiled machine code executed directly by the OS	.exe, a.out
+Script Executable	Human-readable code executed by an interpreter	.sh, .py, .js, .bat
+Key Points for Revision
+An executable file is a file that the operating system can run.
+Files require execute (x) permission to be run directly on Linux.
+Use chmod +x filename to make a file executable.
+./filename runs an executable from the current directory.
+An absolute path starts from /.
+.exe is a binary executable used on Windows.
+.bat is a Windows batch script.
+.sh is a Linux shell script.
+Node.js files are normally executed using node filename.js.
+A Node.js file can be run directly (./app.js) only if it has a shebang (#!/usr/bin/env node) and execute permission.

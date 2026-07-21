@@ -1,0 +1,31 @@
+before 20 version we use nodemon but now in node js introduce the --- watch flag
+
+node --watch index.js
+
+sematic versioning 
+
+major.minor.patch
+
+^1.2.4
+
+major|minor|patch
+
+^ - only minor and patch update will
+
+"1.2.4" - exact version will be installed
+
+"^0.1.2" - only patch update 
+
+* - install latest version
+
+~  - > update only patch version
+
+>  - greater than version 
+
+< -> less than version
+ 
+<=  -- less than version
+
+>= ---- greater than version
+
+
